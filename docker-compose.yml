@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:14
+    restart: always
+    container_name: socialdb
+    environment:
+      POSTGRES_USER: socialuser
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: socialapp
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "socialuser"]
+      interval: 5s
+      retries: 8
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
