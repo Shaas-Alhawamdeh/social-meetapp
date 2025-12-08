@@ -1,21 +1,36 @@
+from dotenv import load_dotenv
+import os
+
+# Load the .env file inside backend/
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+ENV_PATH = os.path.join(BASE_DIR, "..", ".env")
+
+load_dotenv(dotenv_path=ENV_PATH)   # <-- THIS IS THE FIX
+
+print("Loaded .env from:", ENV_PATH)
+
 from fastapi import FastAPI
 from .database import Base, engine
 from .routers import auth
 from fastapi.middleware.cors import CORSMiddleware
+
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Social App Backend")
+
 origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
-    allow_credentials= True,
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 app.include_router(auth.router)
 
 @app.get("/")

@@ -1,41 +1,12 @@
 "use client";
 
-import { useState } from "react";
-
 export default function ProfilePage() {
-  const [first, setFirst] = useState("");
-  const [last, setLast] = useState("");
-
   return (
-    <div className="min-h-screen bg-white text-black p-6 flex flex-col">
-      <h1 className="text-3xl font-bold mb-6">Create your profile</h1>
-
-      <div className="flex flex-col gap-4">
-        <input
-          className="border p-4 rounded-xl"
-          placeholder="First name"
-          value={first}
-          onChange={(e) => setFirst(e.target.value)}
-        />
-
-        <input
-          className="border p-4 rounded-xl"
-          placeholder="Last name"
-          value={last}
-          onChange={(e) => setLast(e.target.value)}
-        />
-      </div>
-
-      <button
-        disabled={!first || !last}
-        className={`mt-auto py-4 rounded-full font-semibold ${
-          !first || !last
-            ? "bg-neutral-300 text-neutral-400"
-            : "bg-black text-white"
-        }`}
-      >
-        Continue
-      </button>
+    <div className="min-h-screen flex flex-col justify-center items-center text-center p-6">
+      <h1 className="text-4xl font-bold">Welcome!</h1>
+      <p className="text-gray-500 mt-2">
+        Your account has been created.
+      </p>
     </div>
   );
 }

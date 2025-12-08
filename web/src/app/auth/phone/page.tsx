@@ -7,6 +7,27 @@ export default function PhonePage() {
   const router = useRouter();
   const [phone, setPhone] = useState("");
 
+  const sendOTP = async () => {
+    const formatted = "+1" + phone;
+
+    console.log("Sending number:", formatted);
+
+    const res = await fetch("http://127.0.0.1:8000/auth/send-otp", {
+      method: "POST",
+      headers: { 
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ phone: formatted }),
+    });
+
+    if (!res.ok) {
+      alert("Error sending OTP");
+      return;
+    }
+
+    router.push(`/auth/code?ph=${formatted}`);
+  };
+
   return (
     <div className="min-h-screen bg-neutral-900 text-white p-6 flex flex-col">
       <button onClick={() => router.back()} className="text-xl mb-6">
@@ -33,7 +54,7 @@ export default function PhonePage() {
 
       <button
         disabled={phone.length < 10}
-        onClick={() => router.push(`/auth/code?ph=${phone}`)}
+        onClick={sendOTP}
         className={`w-full py-4 rounded-full font-semibold ${
           phone.length < 10 ? "bg-neutral-700 text-neutral-500" : "bg-white text-black"
         }`}
