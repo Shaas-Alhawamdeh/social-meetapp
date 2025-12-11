@@ -1,33 +1,61 @@
 "use client";
+
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function BirthdayPage() {
-  const [birthday, setBirthday] = useState("");
+  const [month, setMonth] = useState("");
+  const [day, setDay] = useState("");
+  const [year, setYear] = useState("");
   const router = useRouter();
 
   const handleNext = () => {
-    if (!birthday) return alert("Please enter your birthday");
+    if (!month || !day || !year) return alert("Please complete your birth date");
 
+    const birthday = `${year}-${month}-${day}`;
     router.push("/onboarding/gender");
   };
 
   return (
     <div className="min-h-screen flex flex-col p-6">
-      <h1 className="text-3xl font-bold mb-6">When's your birthday?</h1>
+      {/* Title */}
+      <h1 className="text-3xl font-bold mb-2">Your b-day?</h1>
 
-      <input
-        type="date"
-        value={birthday}
-        onChange={(e) => setBirthday(e.target.value)}
-        className="border p-4 rounded-lg text-lg"
-      />
+      <p className="text-gray-500 mb-8">
+        Your profile shows your age, not your birth date.
+      </p>
 
+      {/* Input row */}
+      <div className="flex gap-4 mb-8">
+        <input
+          type="number"
+          placeholder="MM"
+          maxLength={2}
+          className="border-b w-16 text-center text-xl p-2"
+          onChange={(e) => setMonth(e.target.value.slice(0, 2))}
+        />
+        <input
+          type="number"
+          placeholder="DD"
+          maxLength={2}
+          className="border-b w-16 text-center text-xl p-2"
+          onChange={(e) => setDay(e.target.value.slice(0, 2))}
+        />
+        <input
+          type="number"
+          placeholder="YYYY"
+          maxLength={4}
+          className="border-b w-28 text-center text-xl p-2"
+          onChange={(e) => setYear(e.target.value.slice(0, 4))}
+        />
+      </div>
+
+      {/* Next button */}
       <button
         onClick={handleNext}
-        className="bg-red-500 text-white p-4 mt-6 rounded-lg text-lg"
+        className="bg-black text-white py-4 rounded-full text-lg mt-auto w-full"
       >
-        Continue
+        Next
       </button>
     </div>
   );
