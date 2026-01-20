@@ -128,3 +128,16 @@ html, body {
 body {
   @apply flex flex-col bg-white;
 }
+html, body {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    system-ui,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+}

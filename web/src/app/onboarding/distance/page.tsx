@@ -9,7 +9,7 @@ export default function DistancePage() {
 
   const handleNext = () => {
     if (!distance) return alert("Please set a distance");
-    router.push("/onboarding/birthday");
+    router.push("/onboarding/looking-for");
   };
 
   return (

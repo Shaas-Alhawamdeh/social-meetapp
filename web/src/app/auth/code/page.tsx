@@ -29,7 +29,7 @@ export default function CodePage() {
 
       <button
         disabled={code.length < 6}
-        onClick={() => router.push("/auth/profile")}
+        onClick={() => router.push("/auth/email")}
         className={`w-full py-4 rounded-full font-semibold ${
           code.length < 6 ? "bg-neutral-700 text-neutral-500" : "bg-white text-black"
         }`}

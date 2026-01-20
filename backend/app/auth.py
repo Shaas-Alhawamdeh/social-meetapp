@@ -1,3 +1,4 @@
+
 from passlib.context import CryptContext
 from jose import JWTError, jwt
 from datetime import datetime, timedelta
@@ -25,3 +26,5 @@ def create_access_token(data: dict):
     expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     to_encode["exp"] = expire
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+
+print("VERIFY SID:", VERIFY_SID)

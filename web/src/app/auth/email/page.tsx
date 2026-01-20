@@ -24,7 +24,7 @@ export default function EmailPage() {
     // });
 
     // go to the next step in your flow
-    router.push("/auth/phone"); // or /auth/password, /auth/code, etc.
+    router.push("/auth/rules"); // or /auth/password, /auth/code, etc.
   };
 
   const showError = touched && email.length > 0 && !isValidEmail(email);
